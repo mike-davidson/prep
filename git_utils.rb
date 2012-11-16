@@ -32,8 +32,8 @@ end
 
 
 def pick_item_from(items,prompt)
-  items.each_with_index{|item,index| p "#{index + 1} - #{item}"}
-  p prompt
+  items.each_with_index{|item,index| puts "#{index + 1} - #{item}"}
+  puts prompt
   index = gets.chomp.to_i
   return index == 0 ? "": items[index-1]
 end
