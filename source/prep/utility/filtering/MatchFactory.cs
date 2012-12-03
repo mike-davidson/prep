@@ -18,10 +18,15 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> equal_to_any(params TPropertyType[] values)
     {
-      return new ConditionalMatch<TItemToMatch>(x => new List<TPropertyType>(values).Contains(accessor(x)));
+        return match(x => new List<TPropertyType>(values).Contains(accessor(x)));
     }
 
-    public IMatchAn<TItemToMatch> not_equal_to(TPropertyType value)
+      public IMatchAn<TItemToMatch> match(Condition<TItemToMatch> condition)
+      {
+          return new ConditionalMatch<TItemToMatch>(condition);
+      }
+
+      public IMatchAn<TItemToMatch> not_equal_to(TPropertyType value)
     {
       return equal_to(value).not();
     }

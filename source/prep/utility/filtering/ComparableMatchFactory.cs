@@ -15,12 +15,12 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> greater_than(TPropertyType value)
     {
-      return new ConditionalMatch<TItemToMatch>(x => accessor(x).CompareTo(value) > 0);
+      return match(x => accessor(x).CompareTo(value) > 0);
     }
 
     public IMatchAn<TItemToMatch> between(TPropertyType start, TPropertyType end)
     {
-      return new ConditionalMatch<TItemToMatch>(x => accessor(x).CompareTo(start) >= 0 && accessor(x).CompareTo(end) <= 0);
+      return match(x => accessor(x).CompareTo(start) >= 0 && accessor(x).CompareTo(end) <= 0);
     }
 
     public IMatchAn<TItemToMatch> equal_to(TPropertyType value_to_equal)
@@ -37,5 +37,10 @@ namespace prep.utility.filtering
     {
       return original.not_equal_to(value);
     }
+
+      public IMatchAn<TItemToMatch> match(Condition<TItemToMatch> condition)
+      {
+          return original.match(condition);
+      }
   }
 }
