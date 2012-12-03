@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using prep.collections;
 
 namespace prep.utility.filtering
 {
@@ -24,7 +23,8 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> not_equal_to(TPropertyType value)
     {
-      throw new System.NotImplementedException();
+      return equal_to(value).not();
     }
+
   }
 }
