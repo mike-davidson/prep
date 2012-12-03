@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace prep.collections
+﻿namespace prep.collections
 {
   public class Where<TItemToMatch>
   {
-    public static something... has_a(something...)
+    public static ..... has_a(ProductionStudioAccessor accessor)
     {
-      throw new NotImplementedException();
+
     }
   }
 }
