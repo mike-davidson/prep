@@ -1,7 +1,7 @@
 configs ={
   :git => {
     :user => 'deltadental2012',
-    :remotes => potentially_change("remotes",__FILE__),
+    :remotes => %w/kengerlica ljblackburn mariabsmith jgiannola mike-davidson ericwscott demiller77 othercwood tomcummings/,
     :repo => 'prep' 
   }
 }
