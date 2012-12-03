@@ -119,6 +119,7 @@ namespace prep.specs
         first_movie = new Movie();
         second_movie = new Movie();
         movie_collection.add_all(first_movie, second_movie);
+
       };
 
       Because b = () =>
@@ -161,6 +162,24 @@ namespace prep.specs
         movie_collection.Count.ShouldEqual(1);
     }
 
+    public class when_iterating : movie_library_concern
+    {
+
+      Establish c = () =>
+      {
+        Enumerable.Range(1,1000).each(x => movie_collection.Add(new Movie()));
+      };
+
+      Because b = () =>
+        results = sut.all_movies();
+
+      It should_iterate = () =>
+      {
+        results.Count();
+      };
+
+      static IEnumerable<Movie> results;
+    }
     public class when_adding_two_different_copies_of_the_same_movie : movie_library_concern
     {
       static Movie another_copy_of_speed_racer;
