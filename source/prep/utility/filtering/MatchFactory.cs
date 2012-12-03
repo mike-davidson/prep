@@ -18,7 +18,11 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> equal_to_any(params TPropertyType[] values)
     {
-      throw new NotImplementedException();
+        foreach (TPropertyType ttype in values)
+        {            
+            return equal_to(ttype);
+        }
+        return null;
     }
   }
 }
