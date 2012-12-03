@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using prep.collections;
 
 namespace prep.utility.filtering
 {
@@ -13,16 +14,17 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> equal_to(TPropertyType value_to_equal)
     {
-      return new ConditionalMatch<TItemToMatch>(x => accessor(x).Equals(value_to_equal));
+      return equal_to_any(value_to_equal);
     }
 
     public IMatchAn<TItemToMatch> equal_to_any(params TPropertyType[] values)
     {
-        foreach (TPropertyType ttype in values)
-        {            
-            return equal_to(ttype);
-        }
-        return null;
+      return new ConditionalMatch<TItemToMatch>(x => new List<TPropertyType>(values).Contains(accessor(x)));
+    }
+
+    public IMatchAn<TItemToMatch> not_equal_to(TPropertyType value)
+    {
+      throw new System.NotImplementedException();
     }
   }
 }
