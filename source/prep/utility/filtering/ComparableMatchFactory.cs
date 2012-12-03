@@ -2,13 +2,15 @@
 
 namespace prep.utility.filtering
 {
-  public class ComparableMatchFactory<TItemToMatch, TPropertyType> where TPropertyType : IComparable<TPropertyType>
+  public class ComparableMatchFactory<TItemToMatch, TPropertyType>: ICreateMatchers<TItemToMatch,TPropertyType> where TPropertyType : IComparable<TPropertyType>
   {
     PropertyAccessor<TItemToMatch, TPropertyType> accessor;
+    ICreateMatchers<TItemToMatch, TPropertyType> original;
 
-    public ComparableMatchFactory(PropertyAccessor<TItemToMatch, TPropertyType> accessor)
+    public ComparableMatchFactory(PropertyAccessor<TItemToMatch, TPropertyType> accessor, ICreateMatchers<TItemToMatch, TPropertyType> original)
     {
       this.accessor = accessor;
+      this.original = original;
     }
 
     public IMatchAn<TItemToMatch> greater_than(TPropertyType value)
@@ -19,6 +21,21 @@ namespace prep.utility.filtering
     public IMatchAn<TItemToMatch> between(TPropertyType start, TPropertyType end)
     {
       return new ConditionalMatch<TItemToMatch>(x => accessor(x).CompareTo(start) >= 0 && accessor(x).CompareTo(end) <= 0);
+    }
+
+    public IMatchAn<TItemToMatch> equal_to(TPropertyType value_to_equal)
+    {
+      return original.equal_to(value_to_equal);
+    }
+
+    public IMatchAn<TItemToMatch> equal_to_any(params TPropertyType[] values)
+    {
+      return original.equal_to_any(values);
+    }
+
+    public IMatchAn<TItemToMatch> not_equal_to(TPropertyType value)
+    {
+      return original.not_equal_to(value);
     }
   }
 }

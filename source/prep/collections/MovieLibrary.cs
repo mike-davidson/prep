@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using prep.utility;
-using prep.utility.filtering;
 
 namespace prep.collections
 {
@@ -29,88 +28,6 @@ namespace prep.collections
     bool already_contains(Movie movie)
     {
       return movies.Contains(movie);
-    }
-
-    public IEnumerable<Movie> all_movies_matching(Condition<Movie> condition)
-    {
-      return movies.all_items_matching(new ConditionalMatch<Movie>(condition));
-    }
-
-    public IEnumerable<Movie> all_movies_published_by_pixar()
-    {
-      return all_movies_matching(x => x.production_studio == ProductionStudio.Pixar);
-    }
-
-    public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
-    {
-      return
-        all_movies_matching(
-          x => x.production_studio == ProductionStudio.Pixar || x.production_studio == ProductionStudio.Disney);
-    }
-
-    public IEnumerable<Movie> all_movies_not_published_by_pixar()
-    {
-      IList<Movie> nonPixarMovies = new List<Movie>();
-      foreach (var movie in movies)
-      {
-        if (movie.production_studio != ProductionStudio.Pixar)
-        {
-          nonPixarMovies.Add(movie);
-        }
-      }
-      return nonPixarMovies;
-    }
-
-    public IEnumerable<Movie> all_movies_published_after(int year)
-    {
-      IList<Movie> publishafterMovies = new List<Movie>();
-      foreach (var movie in movies)
-      {
-        if (movie.date_published.Year > year)
-        {
-          publishafterMovies.Add(movie);
-        }
-      }
-      return publishafterMovies;
-    }
-
-    public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
-    {
-      IList<Movie> publishbetweenMovies = new List<Movie>();
-      foreach (var movie in movies)
-      {
-        if (movie.date_published.Year >= startingYear && movie.date_published.Year <= endingYear)
-        {
-          publishbetweenMovies.Add(movie);
-        }
-      }
-      return publishbetweenMovies;
-    }
-
-    public IEnumerable<Movie> all_kid_movies()
-    {
-      IList<Movie> kidMovies = new List<Movie>();
-      foreach (var movie in movies)
-      {
-        if (movie.genre == Genre.kids)
-        {
-          kidMovies.Add(movie);
-        }
-      }
-      return kidMovies;
-    }
-
-    public IEnumerable<Movie> all_action_movies()
-    {
-      IList<Movie> actionMovies = new List<Movie>();
-      foreach (var movie in movies)
-      {
-        if (movie.genre == Genre.action)
-        {
-          actionMovies.Add(movie);
-        }
-      }
-      return actionMovies;
     }
 
     public IEnumerable<Movie> sort_all_movies_by_date_published_ascending()

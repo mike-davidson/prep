@@ -2,7 +2,7 @@
 
 namespace prep.utility.filtering
 {
-  public class MatchFactory<TItemToMatch, TPropertyType>
+  public class MatchFactory<TItemToMatch, TPropertyType> : ICreateMatchers<TItemToMatch, TPropertyType>
   {
     PropertyAccessor<TItemToMatch, TPropertyType> accessor;
 
