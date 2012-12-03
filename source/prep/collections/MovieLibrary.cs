@@ -30,9 +30,9 @@ namespace prep.collections
       return movies.Contains(movie);
     }
 
-    public IEnumerable<Movie> all_movies_matching(MovieCondition condition)
+    public IEnumerable<Movie> all_movies_matching(Condition<Movie> condition)
     {
-      return movies.all_items_matching(condition.Invoke);
+      return movies.all_items_matching(condition);
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar()

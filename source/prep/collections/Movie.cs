@@ -30,18 +30,18 @@ namespace prep.collections
 
     public static Condition<Movie> is_in_genre(Genre genre)
     {
-      return x => x.genre == genre;
+      return new IsInGenre(genre).matches;
     }
 
     public static Condition<Movie> is_published_by(ProductionStudio studio)
     {
-      return x => x.production_studio == studio;
+      return new IsPublishedBy(studio).matches;
     }
 
     public static Condition<Movie> is_published_by_pixar_or_disney()
     {
-        return
-            x => is_published_by(ProductionStudio.Pixar).Invoke(x) || is_published_by(ProductionStudio.Disney).Invoke(x);
+      return
+        x => is_published_by(ProductionStudio.Pixar)(x) || is_published_by(ProductionStudio.Disney)(x);
     }
   }
 }
