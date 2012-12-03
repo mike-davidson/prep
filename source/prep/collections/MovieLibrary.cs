@@ -32,7 +32,7 @@ namespace prep.collections
 
     public IEnumerable<Movie> all_movies_matching(MovieCondition condition)
     {
-      return movies.all_items_matching(condition);
+      return movies.all_items_matching(new Condition<Movie>(condition));
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar()
