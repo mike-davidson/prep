@@ -18,7 +18,7 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> between(TPropertyType start, TPropertyType end)
     {
-      throw new NotImplementedException();
+      return new ConditionalMatch<TItemToMatch>(x => accessor(x).CompareTo(start) >= 0 && accessor(x).CompareTo(end) <= 0);
     }
   }
 }
