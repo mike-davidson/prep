@@ -32,14 +32,13 @@ namespace prep.collections
 
     public IEnumerable<Movie> all_movies_matching(MovieCondition condition)
     {
-      return movies.all_items_matching(new Condition<Movie>(condition));
+      return movies.all_items_matching(condition.Invoke);
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar()
     {
       return all_movies_matching(x => x.production_studio == ProductionStudio.Pixar);
     }
-
 
     public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
     {

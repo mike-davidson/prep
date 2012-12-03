@@ -1,4 +1,5 @@
 using System;
+using prep.utility;
 
 namespace prep.collections
 {
@@ -14,7 +15,7 @@ namespace prep.collections
     {
       if (other == null) return false;
 
-      return ReferenceEquals(this,other) || this.title == other.title;
+      return ReferenceEquals(this, other) || this.title == other.title;
     }
 
     public override bool Equals(object obj)
@@ -25,6 +26,21 @@ namespace prep.collections
     public override int GetHashCode()
     {
       return title.GetHashCode();
+    }
+
+    public static Condition<Movie> is_in_genre(Genre genre)
+    {
+      return x => x.genre == genre;
+    }
+
+    public static Condition<Movie> is_published_by(ProductionStudio studio)
+    {
+      return x => x.production_studio == studio;
+    }
+
+    public static Condition<Movie> is_published_by_pixar_or_disney()
+    {
+return x => //
     }
   }
 }
