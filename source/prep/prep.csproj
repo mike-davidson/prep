@@ -72,11 +72,13 @@
     <Compile Include="utility\filtering\FallsInRange.cs" />
     <Compile Include="utility\filtering\FilteringExtensions.cs" />
     <Compile Include="utility\filtering\IMatchAnItem.cs" />
+    <Compile Include="utility\filtering\IProvideAccessToCreatingMatchers.cs" />
     <Compile Include="utility\filtering\IsEqualToAny.cs" />
     <Compile Include="utility\filtering\IsGreaterThan.cs" />
     <Compile Include="utility\filtering\MatchCreationExtensionPoint.cs" />
     <Compile Include="utility\filtering\MatchExtensions.cs" />
     <Compile Include="utility\filtering\NegatingMatch.cs" />
+    <Compile Include="utility\filtering\NegatingMatchCreationExtensionPoint.cs" />
     <Compile Include="utility\filtering\NeverMatches.cs" />
     <Compile Include="utility\filtering\OrMatch.cs" />
     <Compile Include="utility\filtering\PropertyMatch.cs" />

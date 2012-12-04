@@ -1,29 +1,26 @@
 ﻿namespace prep.utility.filtering
 {
-  public class MatchCreationExtensionPoint<TItemToMatch, TPropertyType>
+  public class MatchCreationExtensionPoint<TItemToMatch, TPropertyType> :
+    IProvideAccessToCreatingMatchers<TItemToMatch, TPropertyType>
   {
-    public PropertyAccessor<TItemToMatch, TPropertyType> accessor;
-    private bool negate = false;
+    PropertyAccessor<TItemToMatch, TPropertyType> accessor;
 
     public MatchCreationExtensionPoint(PropertyAccessor<TItemToMatch, TPropertyType> accessor)
     {
       this.accessor = accessor;
     }
 
-    private MatchCreationExtensionPoint(PropertyAccessor<TItemToMatch, TPropertyType> accessor, bool negate)
+    public IProvideAccessToCreatingMatchers<TItemToMatch, TPropertyType> not
     {
-        this.accessor = accessor;
-        this.negate = negate;
-    } 
-
-      public bool Negate
+      get
       {
-          get { return negate; }
+        return new NegatingMatchCreationExtensionPoint<TItemToMatch, TPropertyType>(this);
       }
+    }
 
-    public MatchCreationExtensionPoint<TItemToMatch,TPropertyType> not
+    public IMatchAn<TItemToMatch> create_specification_using(IMatchAn<TPropertyType> condition)
     {
-        get { return new MatchCreationExtensionPoint<TItemToMatch, TPropertyType>(accessor, true); }
+      return new PropertyMatch<TItemToMatch, TPropertyType>(accessor, condition);
     }
   }
 }
