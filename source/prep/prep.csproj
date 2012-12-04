@@ -68,6 +68,7 @@
     <Compile Include="utility\filtering\Condition.cs" />
     <Compile Include="utility\filtering\ConditionalMatch.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\filtering\DateFilteringExtensions.cs" />
     <Compile Include="utility\filtering\FallsInRange.cs" />
     <Compile Include="utility\filtering\FilteringExtensions.cs" />
     <Compile Include="utility\filtering\IMatchAnItem.cs" />

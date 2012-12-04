@@ -8,5 +8,10 @@
     {
       this.accessor = accessor;
     }
+
+    public MatchCreationExtensionPoint<TItemToMatch,TPropertyType> not
+    {
+      get { throw new System.NotImplementedException(); }
+    }
   }
 }

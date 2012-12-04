@@ -20,11 +20,6 @@ namespace prep.utility.filtering
       return new PropertyMatch<TItemToMatch, TPropertyType>(extension_point.accessor, condition);
     }
 
-    public static IMatchAn<TItemToMatch> not_equal_to<TItemToMatch,TPropertyType>(this MatchCreationExtensionPoint<TItemToMatch,TPropertyType> extension_point,TPropertyType value)
-    {
-      return equal_to(extension_point,value).not();
-    }
-
     public static IMatchAn<TItemToMatch> greater_than<TItemToMatch,TPropertyType>(this MatchCreationExtensionPoint<TItemToMatch,TPropertyType> extension_point,TPropertyType value) where TPropertyType : IComparable<TPropertyType>
     {
         return create_match_using(extension_point,new FallsInRange<TPropertyType>(Range.starting_at(value)));
