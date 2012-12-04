@@ -1,4 +1,5 @@
 ﻿using System;
+using prep.utility.ranges;
 
 namespace prep.utility.filtering
 {
@@ -14,12 +15,12 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> greater_than(TPropertyType value)
     {
-      return create_match_using(new FallsInRange<TPropertyType>(.......));
+      return create_match_using(new FallsInRange<TPropertyType>(new RangeWithNoUpperBound<TPropertyType>(value)));
     }
 
     public IMatchAn<TItemToMatch> between(TPropertyType start, TPropertyType end)
     {
-      return create_match_using(new FallsInRange<TPropertyType>(.......));
+      return create_match_using(new FallsInRange<TPropertyType>(new RangeWithUpperAndLowerBound<TPropertyType>(start, end)));
     }
 
     public IMatchAn<TItemToMatch> equal_to(TPropertyType value_to_equal)
