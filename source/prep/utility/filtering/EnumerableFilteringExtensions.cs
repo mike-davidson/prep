@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using prep.utility.filtering;
 
-namespace prep.utility
+namespace prep.utility.filtering
 {
   public static class EnumerableFilteringExtensions
   {

@@ -1,6 +1,4 @@
-﻿using prep.utility.filtering;
-
-namespace prep.utility
+﻿namespace prep.utility.filtering
 {
   public class GeneralMatchFunctionalityExtensionPoint<TItemToMatch, TPropertyType, TDslResult>
     : IExposeMatchingFunctionality<TItemToMatch, TPropertyType, TDslResult>

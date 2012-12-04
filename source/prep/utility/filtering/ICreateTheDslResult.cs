@@ -1,6 +1,4 @@
-﻿using prep.utility.filtering;
-
-namespace prep.utility
+﻿namespace prep.utility.filtering
 {
   public delegate TDslResult ICreateTheDslResult<TDslResult,TPropertyType>(IMatchAn<TPropertyType> condition);
 }
