@@ -5,9 +5,9 @@ namespace prep.utility.filtering
 {
   public class FallsInRange<T> : IMatchAn<T> where T : IComparable<T>
   {
-    Range<T> range;
+    IRange<T> range;
 
-    public FallsInRange(Range<T> range)
+    public FallsInRange(IRange<T> range)
     {
       this.range = range;
     }

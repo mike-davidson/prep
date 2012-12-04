@@ -1,24 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace prep.utility.ranges
 {
-  public interface Range<T> where T : IComparable<T>
-  {
-    bool contains(T value);
-  }
-
-  public class RangeWithNoUpperBound<T> : Range<T> where T : IComparable<T>
-  {
-    T start;
-
-    public RangeWithNoUpperBound(T start)
+    public class Range<T> where T : IComparable<T>
     {
-      this.start = start;
+        public static RangeBuilder<T> Build()
+        {
+            return new RangeBuilder<T>();
+        }
     }
-
-    public bool contains(T value)
-    {
-      return value.CompareTo(start) > 0;
-    }
-  }
 }
