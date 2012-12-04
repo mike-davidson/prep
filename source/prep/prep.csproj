@@ -63,7 +63,8 @@
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
-    <Compile Include="utility\FilteringEnumerableExtensions.cs" />
+    <Compile Include="utility\EnumerableFilteringExtensions.cs" />
+    <Compile Include="utility\EnumerableMatchingExtensionPoint.cs" />
     <Compile Include="utility\filtering\AlwaysMatches.cs" />
     <Compile Include="utility\filtering\AndMatch.cs" />
     <Compile Include="utility\filtering\Condition.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="utility\filtering\FallsInRange.cs" />
     <Compile Include="utility\filtering\FilteringExtensions.cs" />
     <Compile Include="utility\filtering\IMatchAnItem.cs" />
-    <Compile Include="utility\filtering\IProvideAccessToCreatingMatchers.cs" />
+    <Compile Include="utility\filtering\IExposeMatchingFunctionality.cs" />
     <Compile Include="utility\filtering\IsEqualToAny.cs" />
     <Compile Include="utility\filtering\IsGreaterThan.cs" />
     <Compile Include="utility\filtering\MatchCreationExtensionPoint.cs" />
