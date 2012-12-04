@@ -17,7 +17,12 @@ namespace prep.utility.filtering
 
     public static IMatchAn<TItemToMatch> create_match_using<TItemToMatch,TPropertyType>(this MatchCreationExtensionPoint<TItemToMatch,TPropertyType> extension_point,IMatchAn<TPropertyType> condition)
     {
-      return new PropertyMatch<TItemToMatch, TPropertyType>(extension_point.accessor, condition);
+        var match = new PropertyMatch<TItemToMatch, TPropertyType>(extension_point.accessor, condition);
+        if (extension_point.Negate)
+        {
+            match = new PropertyMatch<TItemToMatch, TPropertyType>(extension_point.accessor, new NegatingMatch<TPropertyType>(condition));
+        }
+        return match;
     }
 
     public static IMatchAn<TItemToMatch> greater_than<TItemToMatch,TPropertyType>(this MatchCreationExtensionPoint<TItemToMatch,TPropertyType> extension_point,TPropertyType value) where TPropertyType : IComparable<TPropertyType>
