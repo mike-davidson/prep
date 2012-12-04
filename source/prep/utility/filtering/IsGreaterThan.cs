@@ -1,22 +1,7 @@
 ﻿using System;
-using prep.utility.ranges;
 
 namespace prep.utility.filtering
 {
-  public class FallsInRange<T> : IMatchAn<T> where T : IComparable<T>
-  {
-    IRange<T> range;
-
-    public FallsInRange(IRange<T> range)
-    {
-      this.range = range;
-    }
-
-    public bool matches(T item)
-    {
-      return range.contains(item);
-    }
-  } 
   public class IsBetween<T> : IMatchAn<T> where T : IComparable<T>
   {
     T start;

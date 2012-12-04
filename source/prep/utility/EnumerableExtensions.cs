@@ -11,12 +11,13 @@ namespace prep.utility
     }
 
     static IEnumerable<TItem> all_items_matching<TItem>(this IEnumerable<TItem> items,
-                                                                Condition<TItem> condition)
+                                                        Condition<TItem> condition)
     {
       foreach (var item in items) if (condition(item)) yield return item;
     }
+
     public static IEnumerable<TItem> all_items_matching<TItem>(this IEnumerable<TItem> items,
-                                                                IMatchAn<TItem> specification)
+                                                               IMatchAn<TItem> specification)
     {
       return items.all_items_matching(specification.matches);
     }
