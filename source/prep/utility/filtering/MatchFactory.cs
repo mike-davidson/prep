@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace prep.utility.filtering
+﻿namespace prep.utility.filtering
 {
   public class MatchFactory<TItemToMatch, TPropertyType> : ICreateMatchers<TItemToMatch, TPropertyType>
   {
@@ -18,12 +16,12 @@ namespace prep.utility.filtering
 
     public IMatchAn<TItemToMatch> equal_to_any(params TPropertyType[] values)
     {
-      return create_match_using(x => new List<TPropertyType>(values).Contains(accessor(x)));
+      return create_match_using(new IsEqualToAny<TPropertyType>(values));
     }
 
-    public IMatchAn<TItemToMatch> create_match_using(Condition<TItemToMatch> condition)
+    public IMatchAn<TItemToMatch> create_match_using(IMatchAn<TPropertyType> condition)
     {
-      return new ConditionalMatch<TItemToMatch>(condition);
+      return new PropertyMatch<TItemToMatch, TPropertyType>(accessor, condition);
     }
 
     public IMatchAn<TItemToMatch> not_equal_to(TPropertyType value)

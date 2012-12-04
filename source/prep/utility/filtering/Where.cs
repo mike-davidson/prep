@@ -11,7 +11,7 @@ namespace prep.utility.filtering
 
     public static ComparableMatchFactory<TItemToMatch,TPropertyType> has_an<TPropertyType>(PropertyAccessor<TItemToMatch,TPropertyType> accessor) where TPropertyType : IComparable<TPropertyType>
     {
-      return new ComparableMatchFactory<TItemToMatch, TPropertyType>(accessor,has_a(accessor));
+      return new ComparableMatchFactory<TItemToMatch, TPropertyType>(has_a(accessor));
     }
   }
 }
