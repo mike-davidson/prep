@@ -63,6 +63,7 @@
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
+    <Compile Include="utility\FilteringEnumerableExtensions.cs" />
     <Compile Include="utility\filtering\AlwaysMatches.cs" />
     <Compile Include="utility\filtering\AndMatch.cs" />
     <Compile Include="utility\filtering\Condition.cs" />
