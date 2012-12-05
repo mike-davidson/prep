@@ -17,6 +17,7 @@ namespace prep.collections
     public int add(int i, int i1)
     {
         this.connection.Open();
+
         if ((i < 0) || (i1 < 0))
             throw new ArgumentException();
 
