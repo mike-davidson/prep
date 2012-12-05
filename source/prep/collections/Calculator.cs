@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Security;
 
 namespace prep.collections
 {
@@ -29,7 +30,7 @@ namespace prep.collections
 
     public void shut_off()
     {
-      throw new NotImplementedException();
+        throw new SecurityException();
     }
   }
 }
