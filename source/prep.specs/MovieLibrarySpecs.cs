@@ -281,7 +281,7 @@ namespace prep.specs
         // >0 = x > y
         // <0 = x < y
         // =0 = x == y
-        var comparer = Sort<Movie>.by_descending(x => x.title);
+        var comparer = Sort<Movie>.by(x => x.title,SortDirection.descending);
 
         var results = sut.all_movies().sort_using(comparer);
 
@@ -303,7 +303,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_date_published_descending = () =>
       {
-          var comparer = Sort<Movie>.by_descending(x => x.date_published);
+          var comparer = Sort<Movie>.by(x => x.date_published,SortDirection.descending);
           var results = sut.all_movies().sort_using(comparer);
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, the_ring, cars,
@@ -339,6 +339,7 @@ namespace prep.specs
                                       ProductionStudio.Disney,
                                       ProductionStudio.Paramount)
                                   .then_by(x => x.date_published);
+
 
         var results = sut.all_movies().sort_using(comparer);
         /* should return a set of results 
