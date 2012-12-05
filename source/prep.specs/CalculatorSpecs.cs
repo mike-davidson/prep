@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Security;
+using System.Security.Principal;
+using System.Threading;
 using Machine.Specifications;
+using Rhino.Mocks;
 using developwithpassion.specifications.rhinomocks;
 using prep.collections;
 using developwithpassion.specifications.extensions;
@@ -14,12 +18,15 @@ namespace prep.specs
     {
     }
 
+
+
+
     public class when_adding_two_numbers : concern
     {
       Establish c = () =>
       {
-        connection = depends.on<IDbConnection>();
         command = fake.an<IDbCommand>();
+        connection = depends.on<IDbConnection>();
 
         connection.setup(x => x.CreateCommand()).Return(command);
       };
@@ -41,6 +48,30 @@ namespace prep.specs
       static IDbConnection connection;
       static IDbCommand command;
     }
+    public class when_attempting_to_shut_off_the_calculator : concern
+    {
+      Establish c = () =>
+      {
+        principal = fake.an<IPrincipal>();
+        spec.change(() => Thread.CurrentPrincipal).to(principal);
+      };
+
+
+      public class and_they_are_not_in_the_correct_security_group
+      {
+        Establish c = () =>
+        {
+          principal.setup(x => x.IsInRole(Arg<string>.Is.Anything)).Return(false);
+        };
+        Because b = () =>
+          spec.catch_exception(() => sut.shut_off());
+
+        It should_throw_a_security_exceptionn = () =>
+          spec.exception_thrown.ShouldBeAn<SecurityException>();
+          
+      }
+      static IPrincipal principal;
+    }
 
     public class when_attempting_to_add_a_negative_to_a_positive : concern
     {
@@ -52,4 +83,5 @@ namespace prep.specs
         spec.exception_thrown.ShouldBeAn<ArgumentException>(); 
     }
   }
+
 }
