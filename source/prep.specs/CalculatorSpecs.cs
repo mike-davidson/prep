@@ -70,6 +70,23 @@ namespace prep.specs
           spec.exception_thrown.ShouldBeAn<SecurityException>();
           
       }
+
+      public class and_they_are_in_the_correct_security_group
+      {
+        Establish c = () =>
+        {
+          principal.setup(x => x.IsInRole(Arg<string>.Is.Anything)).Return(true);
+        };
+
+        Because b = () =>
+          sut.shut_off();
+
+        It should_not_do_anything_that_causes_an_error = () =>
+        {
+
+        };
+          
+      }
       static IPrincipal principal;
     }
 
