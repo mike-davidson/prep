@@ -19,6 +19,9 @@ namespace prep.specs
       Establish c = () =>
       {
         connection = depends.on<IDbConnection>();
+        command = fake.an<IDbCommand>();
+
+        connection.setup(x => x.CreateCommand()).Return(command);
       };
 
       Because b = () =>
@@ -26,6 +29,9 @@ namespace prep.specs
 
       It should_open_a_connection_to_the_database = () =>
         connection.received(x => x.Open());
+
+      It should_run_a_stored_procedure = () =>
+        command.received(x => x.ExecuteNonQuery());
         
 
       It should_return_the_sum = () =>
@@ -33,6 +39,7 @@ namespace prep.specs
 
       static int result;
       static IDbConnection connection;
+      static IDbCommand command;
     }
 
     public class when_attempting_to_add_a_negative_to_a_positive : concern
